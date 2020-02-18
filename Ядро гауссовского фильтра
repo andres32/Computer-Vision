@@ -1,0 +1,16 @@
+import numpy as np
+import math
+sigma = input()
+sigma = float(sigma)
+a =  int(round(sigma*6)+1)
+kernel =  np.zeros((a,a))
+for i in reversed(range(a)):
+    for j in reversed(range(a)):
+        kernel[i][j] = 1/((2*math.pi)*sigma**2)*math.e**((-(j-1)**2-(1-i)**2)/(2*sigma**2))
+result = kernel/sum(sum(kernel)) 
+width = kernel.shape[1]
+for i in range(width):
+    for j in range(width):
+        print("{:.5f}".format(result[i][j])),
+    print
+print
